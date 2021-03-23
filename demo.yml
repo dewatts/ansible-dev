@@ -1,0 +1,10 @@
+- name: copy demo
+  hosts: bender
+  connection: ssh
+
+  tasks:
+   - name: copy demo
+     # comment
+     copy:
+       src: ~/ans/newfile.txt
+       dest: ~/bendersnewfile.txt

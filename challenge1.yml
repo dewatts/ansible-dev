@@ -1,0 +1,24 @@
+- name: challenge1
+  hosts: renamed:!taz
+
+  gather_facts: no
+  connection: ssh
+  vars:
+    newuser: davew
+
+  tasks:
+  # create a new group
+  - name: Create the new group sandbox
+    group:
+      name: funkytown
+      state: present
+    become: yes
+
+  # create new user on target system
+  - name: Add user  with group of 'funkytown'
+    user:
+      name: "{{ newuser }}"
+      state: present
+      group: funkytown
+    become: yes            
+
