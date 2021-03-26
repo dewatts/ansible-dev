@@ -1,0 +1,26 @@
+---
+- name: Challenge 5
+  hosts: localhost
+  gather_facts: no
+
+  vars:
+    challenge5_ssh_pass: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          31633138343530343665613438663962633030313761346162376663383065373566356262666433
+          6264646535383937653731303331616563373538666463300a343732343736326437303130643461
+          37666264323864366462373165303439303031393439316139646530653732393135653433306161
+          6430333863383833330a333032316536306637616561666433396162633162643263333436636661
+          3135
+
+  tasks:
+    - name: print out encrypted vars
+      debug:
+        msg: "{{ challenge5_ssh_pass }}"
+
+    - name: precheck
+      get_url:
+        url: https://api.nasa.gov/planetary/apod?api_key=tFXI8wD5RLHE84WEvtZg8MdkychOZn0bV4T6sgM4
+        dest: /home/student/static/apod
+      register: get_apod
+      msg: get_apod
+

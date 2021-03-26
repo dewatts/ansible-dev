@@ -1,0 +1,11 @@
+- name: copy keys into remote hosts
+  hosts: planetexpress
+  gather_facts: yes
+
+  tasks:
+  - name: test1
+    apt:
+     name: figlet
+     state: absent
+    become: yes
+
